@@ -1,6 +1,6 @@
 # Coop
 
-Projet VueJS
+Projet VueJS 3 & Bulma
 
 ## Recommended IDE Setup
 

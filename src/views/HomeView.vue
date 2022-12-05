@@ -14,7 +14,7 @@ onMounted(async () => {
     loginMember();
   else {
     const mid = session.data.member.id;
-    const response = await api.get(`members/${mid}/seignedin?token=${token}`);
+    const response = await api.get(`members/${mid}/signedin?token=${token}`);
     const data = await response;
     if (!data.token)
       loginMember();
@@ -22,7 +22,7 @@ onMounted(async () => {
 })
 
 function loginMember() {
-
+  router.push('/login');
 }
 </script>
 

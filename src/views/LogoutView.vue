@@ -1,5 +1,33 @@
-<template>
-    <div>
+<script setup>
+import { useRouter } from 'vue-router';
+import { onMounted } from 'vue';
+import { useSessionStore } from '@/stores/session';
 
-    </div>
+const router = new useRouter();
+const session = new useSessionStore();
+
+onMounted(() => {
+    let isConnected = true;
+
+    if (!session.data.token)
+        isConnected = false;
+
+    if (!isConnected)
+        router.push('/login');
+
+    api.delete('members/signout', {
+        body: {
+            token: session.data.token
+        }
+    })
+
+    session.data.token = '';
+    isConnected = false;
+})
+
+
+router.push('/');
+</script>
+
+<template>
 </template>

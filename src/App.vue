@@ -9,7 +9,7 @@ const session = new useSessionStore();
       <div class="navbar-brand">
         <div class="navbar-menu">
           <div class="navbar-start">
-            <RouterLink to="/" class="navbar-item">COOP</RouterLink>
+            <RouterLink to="/" class="navbar-item">CO'OP</RouterLink>
           </div>
         </div>
       </div>
@@ -27,7 +27,3 @@ const session = new useSessionStore();
     <RouterView />
   </div>
 </template>
-
-<style scoped>
-
-</style>

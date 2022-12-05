@@ -16,8 +16,8 @@ const session = new useSessionStore();
       <div class="navbar-end">
         <div class="navbar-item">
           <div class="buttons">
-            <RouterLink v-if="session.isConnected" to="/logout" class="button is-danger">Se déconnecter</RouterLink>
-            <RouterLink v-else="session.isConnected" to="/login" class="button is-primary">Se connecter</RouterLink>
+            <RouterLink v-if="session.data.token" to="/logout" class="button is-danger">Se déconnecter</RouterLink>
+            <RouterLink v-else="session.data.token" to="/login" class="button is-primary">Se connecter</RouterLink>
             <RouterLink to="/register" class="button is-light">S'inscrire</RouterLink>
           </div>
         </div>

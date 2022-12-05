@@ -10,6 +10,7 @@ const session = new useSessionStore();
         <div class="navbar-menu">
           <div class="navbar-start">
             <RouterLink to="/" class="navbar-item">CO'OP</RouterLink>
+            <RouterLink v-if="session.data.token" to="/members" class="navbar-item">Membres</RouterLink>
           </div>
         </div>
       </div>
@@ -18,7 +19,7 @@ const session = new useSessionStore();
           <div class="buttons">
             <RouterLink v-if="session.data.token" to="/logout" class="button is-danger">Se déconnecter</RouterLink>
             <RouterLink v-else="session.data.token" to="/login" class="button is-primary">Se connecter</RouterLink>
-            <RouterLink to="/register" class="button is-light">S'inscrire</RouterLink>
+            <RouterLink v-if="!session.data.token" to="/register" class="button is-light">S'inscrire</RouterLink>
           </div>
         </div>
       </div>

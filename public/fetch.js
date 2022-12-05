@@ -10,7 +10,6 @@ const api = (() => {
             API_KEY
         );
 
-
         const request = new Request(
             BASE + route,
             {

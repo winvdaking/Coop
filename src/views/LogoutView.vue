@@ -21,10 +21,9 @@ onMounted(() => {
         }
     })
 
-    session.data.token = '';
+    session.data.token = false;
     isConnected = false;
 })
-
 
 router.push('/');
 </script>

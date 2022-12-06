@@ -5,7 +5,6 @@ const session = useSessionStore();
 
 let members = ref([]);
 api.get(`members?token=${session.data.token}`).then(r => members.value = r);
-console.log(members);
 </script>
 
 <template>

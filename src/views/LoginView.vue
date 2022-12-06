@@ -12,6 +12,8 @@ onMounted(async () => {
     const resp = await response;
     if (!resp.message)
         router.push('/');
+    else
+        session.data.token = false;
 })
 
 let member = reactive({

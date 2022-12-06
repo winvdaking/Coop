@@ -1,15 +1,21 @@
 <script setup>
 
   import { useRouter } from 'vue-router';
-  import { onMounted } from 'vue';
-
-  onMounted(() => {
-    const externalScript = document.createElement('script')
-    externalScript.setAttribute('src', '//cdn.jsdelivr.net/npm/sweetalert2@11')
-    document.body.appendChild(externalScript)
-  });
+  import Swal from 'sweetalert2';
 
   const router = new useRouter();
+
+  const Toast = Swal.mixin({
+    toast: true,
+    position: 'bottom-end',
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.addEventListener('mouseenter', Swal.stopTimer)
+      toast.addEventListener('mouseleave', Swal.resumeTimer)
+    }
+  })
 
   let member = reactive({
     fullname: '',
@@ -40,15 +46,9 @@
         formError.value.password = password === '';
 
         if (fullname && email && password) {
-          Swal.fire({
-            width: '28em',
-            position: 'bottom-end',
+          Toast.fire({
             icon: 'error',
-            text: d.message,
-            showConfirmButton: false,
-            timer: 3500,
-            backdrop: false,
-            toast: true
+            text: d.message
           });
         }
 
@@ -62,15 +62,9 @@
     })
     .catch(e => {
       console.log(e)
-      Swal.fire({
-        width: '28em',
-        position: 'bottom-end',
+      Toast.fire({
         icon: 'error',
-        text: e.toString(),
-        showConfirmButton: false,
-        timer: 3500,
-        backdrop: false,
-        toast: true
+        text: e.toString()
       });
     });
 
@@ -78,61 +72,63 @@
 </script>
 
 <template>
-  <div class="columns">
-    <div class="column is-4 is-offset-4 box">
-      <h2 class="title">S'inscrire</h2>
-      <form @submit.prevent="preventForm">
-        <div class="field">
-          <label class="label">Nom/Pseudo</label>
-          <div class="control has-icons-left has-icons-right">
-            <input class="input" :class="{'is-danger': formError.fullname}" type="text" v-model.trim="member.fullname" name="fullname" placeholder="toto">
-            <span class="icon is-small is-left">
-              <i class="fas fa-user"></i>
-            </span>
-            <span class="icon is-small is-right" :class="{'is-hidden': !formError.fullname}">
-              <i class="fas fa-exclamation-triangle"></i>
-            </span>
+  <section class="hero is-fullheight-with-navbar">
+    <div class="hero-body is-justify-content-center">
+      <div class="box">
+        <h2 class="title">S'inscrire</h2>
+        <form @submit.prevent="preventForm">
+          <div class="field">
+            <label class="label">Nom/Pseudo</label>
+            <div class="control has-icons-left has-icons-right">
+              <input class="input" :class="{'is-danger': formError.fullname}" type="text" v-model.trim="member.fullname" name="fullname" placeholder="toto">
+              <span class="icon is-small is-left">
+                <i class="fas fa-user"></i>
+              </span>
+              <span class="icon is-small is-right" :class="{'is-hidden': !formError.fullname}">
+                <i class="fas fa-exclamation-triangle"></i>
+              </span>
+            </div>
+            <p class="help is-danger" :class="{'is-hidden': !formError.fullname}">Le nom/pseudo est invalide.</p>
           </div>
-          <p class="help is-danger" :class="{'is-hidden': !formError.fullname}">Le nom/pseudo est invalide.</p>
-        </div>
 
-        <div class="field">
-          <label class="label">Email</label>
-          <div class="control has-icons-left has-icons-right">
-            <input class="input" :class="{'is-danger': formError.email}" type="email" v-model.trim="member.email" name="email" placeholder="toto@gmail.com">
-            <span class="icon is-small is-left">
-              <i class="fas fa-envelope"></i>
-            </span>
-            <span class="icon is-small is-right" :class="{'is-hidden': !formError.email}">
-              <i class="fas fa-exclamation-triangle"></i>
-            </span>
+          <div class="field">
+            <label class="label">Email</label>
+            <div class="control has-icons-left has-icons-right">
+              <input class="input" :class="{'is-danger': formError.email}" type="email" v-model.trim="member.email" name="email" placeholder="toto@gmail.com">
+              <span class="icon is-small is-left">
+                <i class="fas fa-envelope"></i>
+              </span>
+              <span class="icon is-small is-right" :class="{'is-hidden': !formError.email}">
+                <i class="fas fa-exclamation-triangle"></i>
+              </span>
+            </div>
+            <p class="help is-danger" :class="{'is-hidden': !formError.email}">L'adresse email est invalide.</p>
           </div>
-          <p class="help is-danger" :class="{'is-hidden': !formError.email}">L'adresse email est invalide.</p>
-        </div>
 
-        <div class="field">
-          <label class="label">Mot de passe</label>
-          <div class="control has-icons-left has-icons-right">
-            <input class="input" :class="{'is-danger': formError.password}" type="password" v-model.trim="member.password" name="password" placeholder="****************">
-            <span class="icon is-small is-left">
-              <i class="fas fa-lock"></i>
-            </span>
-            <span class="icon is-small is-right" :class="{'is-hidden': !formError.password}">
-              <i class="fas fa-exclamation-triangle"></i>
-            </span>
+          <div class="field">
+            <label class="label">Mot de passe</label>
+            <div class="control has-icons-left has-icons-right">
+              <input class="input" :class="{'is-danger': formError.password}" type="password" v-model.trim="member.password" name="password" placeholder="****************">
+              <span class="icon is-small is-left">
+                <i class="fas fa-lock"></i>
+              </span>
+              <span class="icon is-small is-right" :class="{'is-hidden': !formError.password}">
+                <i class="fas fa-exclamation-triangle"></i>
+              </span>
+            </div>
+            <p class="help is-danger" :class="{'is-hidden': !formError.password}">Le mot de passe est invalide.</p>
           </div>
-          <p class="help is-danger" :class="{'is-hidden': !formError.password}">Le mot de passe est invalide.</p>
-        </div>
 
-        <div class="field is-grouped">
-          <div class="control">
-            <button class="button is-primary">S'inscrire</button>
+          <div class="field is-grouped">
+            <div class="control">
+              <button class="button is-primary">S'inscrire</button>
+            </div>
+            <div class="control">
+              <RouterLink class="button is-primary is-light" to="/">Annuler</RouterLink>
+            </div>
           </div>
-          <div class="control">
-            <RouterLink class="button is-primary is-light" to="/">Annuler</RouterLink>
-          </div>
-        </div>
-      </form>
-    </div> 
-  </div>
+        </form>
+      </div> 
+    </div>
+  </section>
 </template>

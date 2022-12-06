@@ -6,13 +6,11 @@ import { useSessionStore } from '@/stores/session';
 const router = new useRouter();
 const session = new useSessionStore();
 
-onMounted(() => {
-    let isConnected = false;
-
-    if (session.data.token)
-        isConnected = true;
-
-    if (isConnected)
+onMounted(async () => {
+    const mid = session.data.member.id;
+    const response = await api.get(`members/${mid}/signedin?token=${session.data.token}`);
+    const resp = await response;
+    if (!resp.message)
         router.push('/');
 })
 

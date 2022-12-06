@@ -10,7 +10,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <main>
+  <div class="section">
     <h1 class="title">Liste des conversations</h1>
-  </main>
+  </div>
 </template>

@@ -32,7 +32,8 @@ function postMessage() {
                 <div class="media-content">
                     <div class="field">
                         <p class="control">
-                            <textarea class="textarea" placeholder="Poster un commentaire..."></textarea>
+                            <textarea class="textarea" v-model="message"
+                                placeholder="Poster un commentaire..."></textarea>
                         </p>
                     </div>
                     <div class="field">

@@ -15,7 +15,7 @@ const message = props.message;
         <div class="media-content">
             <div class="content">
                 <p>
-                    <strong>{{ message.author.fullname }}</strong> <small>{{ message.author.email }}</small>
+                    <!-- <strong>{{ message.author.fullname }}</strong> <small>{{ message.author.email }}</small> -->
                     <br>{{ message.message }}<br>
                     <small><a>Supprimer</a> · <a>Modifier</a> · 2 hrs</small>
                 </p>

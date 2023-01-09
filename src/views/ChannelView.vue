@@ -12,16 +12,13 @@ let data = reactive({
     messages: []
 })
 
-let members = [];
-
 onMounted(() => {
     session.isValid();
     api.get(`channels/${route.params.cid}?token=${session.data.token}`).then(r => data.channel = r);
-    api.get(`channels/${route.params.cid}/posts?token=${session.data.token}`).then(r => data.messages = r);
+    api.get(`channels/${route.params.cid}/posts?token=${session.data.token}`).then(r => { data.messages = r; });
     api.get(`members?token=${session.data.token}`).then(r => {
-        members = r;
         data.messages.forEach(msg => {
-            msg.author = members.find(usr => usr.id === msg.member_id)
+            msg.author = r.find(usr => usr.id === msg.member_id);
             delete msg.author.password;
         });
     });
@@ -31,6 +28,7 @@ function deleteChannel() {
     api.delete(`channels/${route.params.cid}?token=${session.data.token}`);
     router.push('/');
 }
+
 </script>
 <template>
     <div class="section">

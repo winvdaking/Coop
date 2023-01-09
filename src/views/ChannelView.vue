@@ -1,10 +1,11 @@
 <script setup>
-import { useRoute } from 'vue-router';
+import { useRoute, useRouter } from 'vue-router';
 import { useSessionStore } from '@/stores/session';
 import postMessage from '../components/PosterMessage.vue';
 import Message from '../components/Message.vue';
 const session = new useSessionStore();
 const route = useRoute();
+const router = useRouter();
 
 let data = reactive({
     channel: {},
@@ -25,11 +26,18 @@ onMounted(() => {
         });
     });
 });
+
+function deleteChannel() {
+    api.delete(`channels/${route.params.cid}?token=${session.data.token}`);
+    router.push('/');
+}
 </script>
 <template>
     <div class="section">
-        <h2 class="title is-4"></h2>
-        <h3 class="subtitle"></h3>
+        <h2 class="title is-4">{{ data.channel.label }}</h2>
+        <h3 class="subtitle">{{ data.channel.topic }}</h3>
+        <button class="button is-danger is-light" @click="deleteChannel">Supprimer la conversation</button>
+        <hr>
         <template v-for="message in data.messages">
             <message :message="message"></message>
         </template>

@@ -1,8 +1,10 @@
 <script setup>
+import { useRouter } from 'vue-router';
 import { onMounted } from 'vue';
 import { useSessionStore } from '@/stores/session';
 
 const session = new useSessionStore();
+const router = useRouter();
 
 let channels = ref([]);
 
@@ -12,7 +14,6 @@ onMounted(() => {
   const $externalScript = document.createElement('script')
   $externalScript.setAttribute('src', '//cdn.jsdelivr.net/npm/sweetalert2@11')
   document.body.appendChild($externalScript)
-
 
   api.get(`channels?token=${session.data.token}`).then(r => channels.value = r);
 });
@@ -74,6 +75,7 @@ function modalAddChannel() {
         timer: 2500,
         timerProgressBar: true,
       });
+      router.push(`/channel/${result.id}`);
     }
   });
 }
@@ -82,7 +84,7 @@ function modalAddChannel() {
 <template>
   <div class="section">
     <h1 class="title">Liste des conversations</h1>
-    <h2 class="subtitle add-conv" @click="modalAddChannel">Créer une conversation</h2>
+    <h2 class="subtitle add-conv has-text-link" @click="modalAddChannel">Créer une nouvelle conversation</h2>
     <template v-for="channel in channels">
       <div class="box">
         <router-link :to="{ name: 'channel', params: { cid: channel.id } }">

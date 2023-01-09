@@ -6,6 +6,10 @@ const session = useSessionStore();
 let members = ref([]);
 api.get(`members?token=${session.data.token}`).then(r => members.value = r);
 console.log(members);
+
+function deleteUser(e) {
+    console.log(e)
+}
 </script>
 
 <template>
@@ -35,7 +39,7 @@ console.log(members);
                             </div>
                             <nav class="level is-mobile">
                                 <div class="level-left">
-                                    <a class="level-item" aria-label="reply">
+                                    <a @click.prevent="deleteUser(member)" class="level-item" aria-label="reply">
                                         <span class="icon is-small">
                                             <i class="fas fa-trash" aria-hidden="true"></i>
                                         </span>

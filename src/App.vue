@@ -1,6 +1,11 @@
 <script setup>
-  import { useSessionStore } from './stores/session';
-  const session = new useSessionStore();
+import { useSessionStore } from './stores/session';
+import mitt from 'mitt';
+
+const session = new useSessionStore();
+const bus = mitt();
+provide('bus', bus);
+
 </script>
 
 <template>

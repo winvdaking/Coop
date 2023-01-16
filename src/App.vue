@@ -1,6 +1,6 @@
 <script setup>
-import { useSessionStore } from './stores/session';
-const session = new useSessionStore();
+  import { useSessionStore } from './stores/session';
+  const session = new useSessionStore();
 </script>
 
 <template>

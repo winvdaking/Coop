@@ -1,10 +1,11 @@
 <script setup>
 import { ref, defineProps, inject } from 'vue';
 import { useSessionStore } from '@/stores/session';
+const bus = inject('bus');
 const props = defineProps(['cid'])
 const session = new useSessionStore();
 
-let message = ref('')
+let message = ref('');
 
 function postMessage() {
     api.post(`channels/${props.cid}/posts?token=${session.data.token}`, {
@@ -15,7 +16,7 @@ function postMessage() {
         }
     }).then(response => {
         message.value = '';
-        console.log(response);
+        bus.emit('loadMessages');
     });
 }
 </script>
@@ -32,7 +33,8 @@ function postMessage() {
                 <div class="media-content">
                     <div class="field">
                         <p class="control">
-                            <textarea class="textarea" placeholder="Poster un commentaire..."></textarea>
+                            <textarea class="textarea" v-model="message"
+                                placeholder="Poster un commentaire..."></textarea>
                         </p>
                     </div>
                     <div class="field">

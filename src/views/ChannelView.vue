@@ -15,6 +15,9 @@ let data = reactive({
 })
 
 let members = [];
+let finish = reactive({
+    fini: false
+});
 
 bus.on('loadMessages', loadMessages);
 
@@ -22,7 +25,8 @@ onMounted(async () => {
     session.isValid();
     api.get(`channels/${route.params.cid}?token=${session.data.token}`).then(r => data.channel = r);
     await loadMessages();
-
+    finish.fini = true;
+    console.log(finish);
     const externalScript = document.createElement('script');
     externalScript.setAttribute('src', '//cdn.jsdelivr.net/npm/sweetalert2@11');
     document.body.appendChild(externalScript);
@@ -52,10 +56,10 @@ async function loadMembers() {
     <div class="section">
         <h2 class="title is-4">{{ data.channel.label }}</h2>
         <h3 class="subtitle">{{ data.channel.topic }}</h3>
-        <template v-if="!data.messages">
+        <template v-if="!finish.fini">
             Chargement des messages...
         </template>
-        <template v-if="data.messages">
+        <template v-else="finish.fini">
             <template v-for="message in data.messages">
                 <message :message="message"></message>
             </template>

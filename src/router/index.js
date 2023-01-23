@@ -33,6 +33,11 @@ const router = createRouter({
       path: '/channel/:cid',
       name: 'channel',
       component: () => import('../views/ChannelView.vue')
+    },
+    {
+      path: '/members/:mid',
+      name: 'memberInfo',
+      component: () => import('../views/MemberInfo.vue')
     }
   ]
 });

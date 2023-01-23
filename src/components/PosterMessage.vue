@@ -1,5 +1,5 @@
 <script setup>
-import { ref, defineProps, inject } from 'vue';
+import { ref } from 'vue';
 import { useSessionStore } from '@/stores/session';
 const bus = inject('bus');
 const props = defineProps(['cid'])

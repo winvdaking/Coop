@@ -13,7 +13,7 @@ api.get(`members?token=${session.data.token}`).then(r => members.value = r);
         <div class="columns">
             <template v-for="member in members">
                 <div class="column is-3">
-                    <article class="box">
+                    <RouterLink :to="`/members/${member.id}`" class="box">
                         <div class="media-content">
                             <div class="content">
                                 <p>
@@ -42,7 +42,7 @@ api.get(`members?token=${session.data.token}`).then(r => members.value = r);
                                 </div>
                             </nav>
                         </div>
-                    </article>
+                    </RouterLink>
                 </div>
             </template>
         </div>

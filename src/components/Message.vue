@@ -1,5 +1,4 @@
 <script setup>
-import { defineProps } from 'vue';
 import { useSessionStore } from '@/stores/session';
 import moment from 'moment';
 import { useRoute } from 'vue-router';
@@ -136,7 +135,7 @@ function deleteMessage(mid) {
                     <small>
                         <template v-if="message.member_id === session.data.member.id">
                             <a @click="editMessage(message.id, message.message)">Modifier</a> · <a
-                                @click="deleteMessage(message.id)">Supprimer</a> ·
+                                class="has-text-danger" @click="deleteMessage(message.id)">Supprimer</a> ·
                         </template>
                         il y a {{ moment(message.created_at).fromNow(true) }}</small>
                 </p>

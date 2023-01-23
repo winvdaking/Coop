@@ -13,7 +13,6 @@ onMounted(() => {
   $externalScript.setAttribute('src', '//cdn.jsdelivr.net/npm/sweetalert2@11')
   document.body.appendChild($externalScript)
 
-
   api.get(`channels?token=${session.data.token}`).then(r => channels.value = r);
 });
 

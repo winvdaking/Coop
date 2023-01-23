@@ -28,6 +28,16 @@ const router = createRouter({
       path: '/members',
       name: 'members',
       component: () => import('../views/MembersView.vue')
+    },
+    {
+      path: '/channel/:cid',
+      name: 'channel',
+      component: () => import('../views/ChannelView.vue')
+    },
+    {
+      path: '/members/:mid',
+      name: 'memberInfo',
+      component: () => import('../views/MemberInfo.vue')
     }
   ]
 });

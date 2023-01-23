@@ -12,7 +12,7 @@
     const resp = await response;
     if (!resp.message)
       router.push('/');
-  })
+  });
 
   let member = reactive({
     email: '',

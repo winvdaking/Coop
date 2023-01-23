@@ -120,7 +120,18 @@ function deleteMessage(mid) {
         <div class="media-content">
             <div class="content">
                 <p>
-                    <strong>{{ message.author.fullname }}</strong> <small>{{ message.author.email }}</small>
+                    <template v-if="message.author.id">
+                        <RouterLink :to="{ name: 'memberInfo', params: { mid: message.member_id } }"><strong>{{
+                            message.author.fullname
+                        }}</strong>
+                        </RouterLink> <small>{{
+                            message.author.email
+                        }}</small>
+                    </template>
+                    <template v-else="message.author.id">
+                        <i>{{ message.author.fullname }}</i>
+                    </template>
+
                     <br>{{ message.message }}<br>
                     <small>
                         <template v-if="message.member_id === session.data.member.id">

@@ -34,7 +34,11 @@ async function loadMessages() {
     data.messages = response.reverse();
     data.messages.forEach(msg => {
         msg.author = members.find(usr => usr.id === msg.member_id);
-        delete msg.author.password;
+        if (!msg.author)
+            msg.author = { id: null, fullname: 'Utilisateur supprimé', email: null };
+
+        if (msg.author)
+            delete msg.author.password;
     });
 }
 
@@ -43,10 +47,14 @@ async function loadMembers() {
     members = response.reverse();
 }
 </script>
+
 <template>
     <div class="section">
         <h2 class="title is-4">{{ data.channel.label }}</h2>
         <h3 class="subtitle">{{ data.channel.topic }}</h3>
+        <template v-if="!data.messages">
+            Chargement des messages...
+        </template>
         <template v-if="data.messages">
             <template v-for="message in data.messages">
                 <message :message="message"></message>

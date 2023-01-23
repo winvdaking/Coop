@@ -2,6 +2,7 @@
 import { useSessionStore } from '@/stores/session';
 import moment from 'moment';
 import { useRoute } from 'vue-router';
+import md5 from 'md5';
 
 const bus = inject('bus');
 const route = useRoute();
@@ -113,7 +114,10 @@ function deleteMessage(mid) {
     <article class="media">
         <figure class="media-left">
             <p class="image is-48x48">
-                <img src="https://bulma.io/images/placeholders/96x96.png">
+                <template v-if="message.author.id">
+                    <img :src="`https://www.gravatar.com/avatar/${md5(message.author.email)}?d = identicon`"
+                        :alt="`Avatar de ${message.author.fullname}`">
+                </template>
             </p>
         </figure>
         <div class="media-content">

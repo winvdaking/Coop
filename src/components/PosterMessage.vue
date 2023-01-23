@@ -1,6 +1,8 @@
 <script setup>
 import { ref } from 'vue';
 import { useSessionStore } from '@/stores/session';
+import md5 from 'md5';
+
 const bus = inject('bus');
 const props = defineProps(['cid'])
 const session = new useSessionStore();
@@ -27,7 +29,8 @@ function postMessage() {
             <article class="media">
                 <figure class="media-left">
                     <p class="image is-64x64">
-                        <img src="https://bulma.io/images/placeholders/128x128.png">
+                        <img :src="`https://www.gravatar.com/avatar/${md5(session.data.member.email)}?d = identicon`"
+                            :alt="`Avatar de ${session.data.member.fullname}`">
                     </p>
                 </figure>
                 <div class="media-content">

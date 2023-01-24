@@ -1,4 +1,4 @@
-# Projet d'étude ! Ne pas utiliser de *MDP* personnel ! 
+# Projet d'étude ! Ne pas utiliser de **MDP** personnel ! 
 
 # Coop
 

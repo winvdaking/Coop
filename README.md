@@ -1,3 +1,5 @@
+# Projet d'étude ! Ne pas utiliser de *MDP* personnel ! 
+
 # Coop
 
 Projet VueJS 3 & Bulma

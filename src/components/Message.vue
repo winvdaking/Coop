@@ -124,7 +124,7 @@ function deleteMessage(mid) {
             <div class="content">
                 <p>
                     <template v-if="message.author.id">
-                        <RouterLink :to="{ name: 'memberInfo', params: { mid: message.member_id } }"><strong>{{
+                        <RouterLink :to="{ name: 'memberInfo', params: { userId: message.member_id } }"><strong>{{
                             message.author.fullname
                         }}</strong>
                         </RouterLink> <small>{{

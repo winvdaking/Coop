@@ -26,7 +26,6 @@ onMounted(async () => {
     api.get(`channels/${route.params.cid}?token=${session.data.token}`).then(r => data.channel = r);
     await loadMessages();
     finish.fini = true;
-    console.log(finish);
     const externalScript = document.createElement('script');
     externalScript.setAttribute('src', '//cdn.jsdelivr.net/npm/sweetalert2@11');
     document.body.appendChild(externalScript);

@@ -1,6 +1,12 @@
 <script setup>
   import { useSessionStore } from './stores/session';
   const session = new useSessionStore();
+
+  function openNavbar(ev, el) {
+    const $target = document.getElementById(el);
+    ev.target.closest('a').classList.toggle('is-active');
+    $target.classList.toggle('is-active');
+  }
 </script>
 
 <template>
@@ -8,13 +14,13 @@
     <div class="navbar-brand">
       <RouterLink to="/" class="navbar-item">CO'OP</RouterLink>
 
-      <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+      <a role="button" class="navbar-burger" @click="openNavbar($event, 'navbarBasicExample')" aria-label="menu" aria-expanded="false">
         <span aria-hidden="true"></span>
         <span aria-hidden="true"></span>
         <span aria-hidden="true"></span>
       </a>
     </div>
-    <div class="navbar-menu">
+    <div id="navbarBasicExample" class="navbar-menu">
       <div class="navbar-start">
         <div class="navbar-item">
           <RouterLink v-if="session.data.token" to="/members" class="navbar-item">Membres</RouterLink>

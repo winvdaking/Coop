@@ -13,6 +13,8 @@
     "moment": "^2.29.4",
     "pinia": "^2.0.27",
     "pinia-plugin-persistedstate": "^3.0.1",
+    "showdown": "^2.1.0",
+    "showdown-highlight": "^3.1.0",
     "sweetalert2": "^11.6.15",
     "vue": "^3.2.45",
     "vue-router": "^4.1.6"

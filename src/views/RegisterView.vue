@@ -50,12 +50,9 @@
             text: d.message
           });
         }
-
       } else {
-
         // All good        
         router.push('/login');
-
       }
 
     })
@@ -117,13 +114,8 @@
             <p class="help is-danger" :class="{'is-hidden': !formError.password}">Le mot de passe est invalide.</p>
           </div>
 
-          <div class="field is-grouped">
-            <div class="control">
-              <button class="button is-primary">S'inscrire</button>
-            </div>
-            <div class="control">
-              <RouterLink class="button is-primary is-light" to="/">Annuler</RouterLink>
-            </div>
+          <div class="field">
+            <button class="button is-primary is-fullwidth">S'inscrire</button>
           </div>
         </form>
       </div> 

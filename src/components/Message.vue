@@ -3,9 +3,26 @@ import { useSessionStore } from '@/stores/session';
 import moment from 'moment';
 import { useRoute } from 'vue-router';
 import md5 from 'md5';
+import { Converter } from 'showdown';
+import showdownHighlight from "showdown-highlight";
+
+import '../assets/default.min.css';
+
 
 const bus = inject('bus');
 const route = useRoute();
+const markdown = new Converter({
+    tasklists: true,
+    emoji: true,
+    underline: true,
+    strikethrough: true,
+    simplifiedAutoLink: true,
+    extensions: [
+        showdownHighlight({
+            pre: true
+        })
+    ]
+});
 
 moment.updateLocale('fr', {
     relativeTime: {
@@ -135,7 +152,7 @@ function deleteMessage(mid) {
                         <i>{{ message.author.fullname }}</i>
                     </template>
 
-                    <br>{{ message.message }}<br>
+                    <br><span v-html="markdown.makeHtml(message.message)"></span><br>
                     <small>
                         <template v-if="message.member_id === session.data.member.id">
                             <a @click="editMessage(message.id, message.message)">Modifier</a> · <a

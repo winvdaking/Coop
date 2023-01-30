@@ -61,12 +61,9 @@
             </p>
           </div>
           <div class="field">
-            <p class="buttons control is-grouped">
-              <button class="button is-success" type="submit">
-                Se connecter
-              </button>
-              <router-link class="button is-primary is-light" to="/">Annuler</router-link>
-            </p>
+            <button class="button is-success is-fullwidth" type="submit">
+              Se connecter
+            </button>
           </div>
         </form>
       </div>

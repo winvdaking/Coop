@@ -77,11 +77,11 @@
 								</div>
 								<nav v-if="member.id !== session.data.member.id" class="level is-mobile">
 									<div class="level-left">
-										<a @click.prevent="deleteUser(member.id, $event)" class=" button is-danger is-light level-item" aria-label="reply">
+										<button @click.prevent="deleteUser(member.id, $event)" class="button is-danger is-light level-item" aria-label="reply">
 											<span class="icon is-small">
 												<i class="fas fa-trash" aria-hidden="true"></i>
 											</span>
-										</a>
+										</button>
 									</div>
 								</nav>
 							</div>

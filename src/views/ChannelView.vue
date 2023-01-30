@@ -53,8 +53,10 @@ async function loadMembers() {
 
 <template>
     <div class="section">
-        <h2 class="title is-4">{{ data.channel.label }}</h2>
-        <h3 class="subtitle">{{ data.channel.topic }}</h3>
+        <div class="notification">
+            <h2 class="title is-4">{{ data.channel.label }}</h2>
+            <h3 class="subtitle">{{ data.channel.topic }}</h3>
+        </div>
         <template v-if="!finish.fini">
             Chargement des messages...
         </template>

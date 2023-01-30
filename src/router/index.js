@@ -30,14 +30,14 @@ const router = createRouter({
       component: () => import('../views/MembersView.vue')
     },
     {
+      path: '/members/:userId',
+      name: 'memberInfo',
+      component: () => import('../views/MemberView.vue')
+    },
+    {
       path: '/channel/:cid',
       name: 'channel',
       component: () => import('../views/ChannelView.vue')
-    },
-    {
-      path: '/members/:mid',
-      name: 'memberInfo',
-      component: () => import('../views/MemberInfo.vue')
     }
   ]
 });

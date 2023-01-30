@@ -15,7 +15,7 @@
       toast.addEventListener('mouseenter', Swal.stopTimer)
       toast.addEventListener('mouseleave', Swal.resumeTimer)
     }
-  })
+  });
 
   let member = reactive({
     fullname: '',

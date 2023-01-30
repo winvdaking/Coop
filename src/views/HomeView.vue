@@ -81,7 +81,7 @@ function modalAddChannel() {
 <template>
   <div class="section">
     <h1 class="title">Liste des conversations</h1>
-    <h2 class="subtitle add-conv" @click="modalAddChannel">Créer une conversation</h2>
+    <h2 class="subtitle add-conv has-text-link" @click="modalAddChannel">Créer une conversation</h2>
     <template v-for="channel in channels">
       <div class="box">
         <router-link :to="{ name: 'channel', params: { cid: channel.id } }">

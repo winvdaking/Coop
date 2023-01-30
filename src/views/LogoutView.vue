@@ -21,7 +21,7 @@ onMounted(() => {
         }
     })
 
-    session.data.token = false;
+    session.$reset();
     isConnected = false;
 })
 

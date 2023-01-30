@@ -7,11 +7,14 @@
   const session = new useSessionStore();
 
   onMounted(async () => {
-    const mid = session.data.member.id;
-    const response = await api.get(`members/${mid}/signedin?token=${session.data.token}`);
-    const resp = await response;
-    if (!resp.message)
-      router.push('/');
+    const { token } = session.data;
+    const { id: mid } = session.data.member;
+    if (mid && token) {
+      const response = await api.get(`members/${mid}/signedin?token=${token}`);
+      const resp = await response;
+      if (!resp.message)
+        router.push('/');
+    }
   });
 
   let member = reactive({
@@ -23,7 +26,6 @@
     api.post('members/signin', {
       body: member
     }).then(response => {
-      console.log(response);
       if (response.message)
         alert(response.message);
       else {

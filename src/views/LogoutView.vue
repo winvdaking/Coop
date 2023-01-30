@@ -21,7 +21,10 @@ onMounted(() => {
         }
     })
 
-    session.$reset();
+    session.data = {
+        member: {},
+        token: false
+    };
     isConnected = false;
 })
 

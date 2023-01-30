@@ -21,8 +21,11 @@ export const useSessionStore = defineStore('session', () => {
       const mid = data.member.id;
       const response = await api.get(`members/${mid}/signedin?token=${data.token}`);
       const resp = await response;
-      if (!resp.token)
+      if (!resp.token) {
+        data.member = {};
+        data.token = false;
         router.push('/login');
+      }
     }
   }
 

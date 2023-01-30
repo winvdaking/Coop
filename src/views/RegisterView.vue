@@ -36,7 +36,6 @@
     })
     .then(d => {
 
-      console.log(d)
       if ('message' in d) {
 
         const { fullname, email, password } = d.member;
@@ -61,7 +60,6 @@
 
     })
     .catch(e => {
-      console.log(e)
       Toast.fire({
         icon: 'error',
         text: e.toString()

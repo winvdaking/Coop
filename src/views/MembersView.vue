@@ -3,8 +3,6 @@
 	import Swal from 'sweetalert2';
 	import md5 from 'md5';
 
-	const columns = [[], [], [], []];
-
 	const session = useSessionStore();
 
 	session.isValid();
@@ -91,9 +89,6 @@
 					</RouterLink>
 				</div>
 			</template>
-			<div class="column is-3"></div>
-			<div class="column is-3"></div>
-			<div class="column is-3"></div>
 		</div>
 	</div>
 </template>

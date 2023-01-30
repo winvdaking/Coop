@@ -26,9 +26,9 @@ onMounted(() => {
         token: false
     };
     isConnected = false;
-})
 
-router.push('/');
+    router.push('/');
+});
 </script>
 
 <template>

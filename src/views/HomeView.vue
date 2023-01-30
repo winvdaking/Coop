@@ -6,8 +6,8 @@ const session = new useSessionStore();
 
 let channels = ref([]);
 
-onMounted(() => {
-  session.isValid();
+onMounted(async () => {
+  await session.isValid();
 
   const $externalScript = document.createElement('script')
   $externalScript.setAttribute('src', '//cdn.jsdelivr.net/npm/sweetalert2@11')

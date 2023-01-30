@@ -1,6 +1,9 @@
 <script setup>
   import { useSessionStore } from './stores/session';
+  import mitt from 'mitt';
   const session = new useSessionStore();
+  const bus = mitt();
+  provide('bus', bus);
 
   function openNavbar(ev, el) {
     const $target = document.getElementById(el);

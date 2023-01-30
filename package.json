@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "md5": "^2.3.0",
+    "mitt": "^3.0.0",
     "moment": "^2.29.4",
     "pinia": "^2.0.27",
     "pinia-plugin-persistedstate": "^3.0.1",

@@ -29,7 +29,7 @@ function postMessage() {
             <article class="media">
                 <figure class="media-left">
                     <p class="image is-64x64">
-                        <img :src="`https://www.gravatar.com/avatar/${md5(session.data.member.email)}?d = identicon`"
+                        <img :src="`https://www.gravatar.com/avatar/${md5(session.data.member.email)}?d=identicon`"
                             :alt="`Avatar de ${session.data.member.fullname}`">
                     </p>
                 </figure>

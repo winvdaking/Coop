@@ -115,7 +115,7 @@ function deleteMessage(mid) {
         <figure class="media-left">
             <p class="image is-48x48">
                 <template v-if="message.author.id">
-                    <img :src="`https://www.gravatar.com/avatar/${md5(message.author.email)}?d = identicon`"
+                    <img :src="`https://www.gravatar.com/avatar/${md5(message.author.email)}?d=identicon`"
                         :alt="`Avatar de ${message.author.fullname}`">
                 </template>
             </p>

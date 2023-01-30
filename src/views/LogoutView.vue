@@ -27,7 +27,7 @@ onMounted(() => {
     };
     isConnected = false;
 
-    router.push('/');
+    router.push('/login');
 });
 </script>
 
